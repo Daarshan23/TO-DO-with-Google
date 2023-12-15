@@ -25,12 +25,12 @@ const RegisterForm = () => {
     if (!isLoading && authUser) {
       router.push("/");
     }
-  }, [authUser, isLoading]);
+  }, [authUser, isLoading, router]);
 
   const singup = async () => {
     if (!email || !username || !password) return;
     try {
-      const user = await createUserWithEmailAndPassword(auth, email, password);
+      const {user} = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, {
         displayName: username,
       });
